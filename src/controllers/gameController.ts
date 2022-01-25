@@ -13,4 +13,9 @@ export class GameController{
         let gameRoom=this.getSocketGameRoom(socket);
         socket.to(gameRoom).emit('on_correct_word',message);
     }
+    @OnMessage('game_finish')
+    public async gameFinish(@SocketIO() io:Server, @ConnectedSocket() socket:Socket, @MessageBody() message:any){
+        let gameRoom=this.getSocketGameRoom(socket);
+        socket.to(gameRoom).emit('on_game_finish',message);
+    }
 }
