@@ -17,9 +17,10 @@ export class RoomController{
             socket.emit('room_joined');
             if(io.sockets.adapter.rooms.get(message.roomId).size===2){
 
-                
-                socket.emit('start_game',{letters:['S','C','A','R','I','A','T','C','O'],words:['COSTARICA','ACROSTICA','SOCRATICA','TORACICAS']});
-                socket.to(message.roomId).emit('start_game',{letters:['S','C','A','R','I','A','T','C','O'],words:['COSTARICA','ACROSTICA','SOCRATICA','TORACICAS']});
+                let letters = [{letters: ['S','C','A','R','I','A','T','C','O'], words: ['COSTARICA','ACROSTICA','SOCRATICA','TORACICAS']}, {letters: ['S','O','R','A','C'], words: ['OSCAR','ARCOS','CAROS','ROCAS','ROSCA','SACRO']}, {letters: ['L','A','R','C','A'], words: ['CARLA','CALAR','CLARA','LACAR','LACRA']}, {letters: ['S','E','N','E','T','R','O'], words: ['ERNESTO','ENTEROS','ESTRENO','ETERNOS']}, {letters: ['A','N','R','E','D','O','F','N'], words: ['FERNANDO','FRENANDO','OFRENDA']}];
+                let random = letters[Math.floor(Math.random() * letters.length)]
+                socket.emit('start_game',{letters:random.letters,words:random.words});
+                socket.to(message.roomId).emit('start_game',{letters:random.letters,words:random.words});
             }
         }
     }
