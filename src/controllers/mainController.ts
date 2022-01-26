@@ -1,4 +1,4 @@
-import { ConnectedSocket, OnConnect, SocketController, SocketId } from "socket-controllers";
+import { ConnectedSocket, OnConnect, SocketController, SocketId, OnDisconnect, SocketIO} from "socket-controllers";
 import { Server, Socket } from "socket.io";
 import socket from "../socket";
 
@@ -10,5 +10,5 @@ export  class MainController{
         socket.on('custom_event',(data:any)=>{
             console.log(data);
         })
-    }
+    }  
 }
